@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WWE Sign In</title>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #f2f2f2);
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .signin-container {
+    background: #fff;
+    padding: 40px 30px;
+    padding-top: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .signin-container h1 {
+    color: #e10600; /* WWE Red */
+    /* margin-bottom: 20px; */ 
+    margin-top: 0px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .signin-container p {
+    color: #555;
+    font-size: 0.95rem;
+    /* margin-bottom: 25px; */
+  }
+
+  .signin-banner {
+    width: 100px;
+  }
+
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .signin-form input {
+    padding: 14px 18px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    background: #fafafa;
+    color: #222;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  .signin-form input:focus {
+    border-color: #e10600;
+    box-shadow: 0 0 6px rgba(225, 6, 0, 0.4);
+  }
+
+  .signin-form button {
+    padding: 14px 18px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e10600, #b30000);
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+
+  .signin-form button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(225, 6, 0, 0.6);
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+
+  .options a {
+    color: #e10600;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .options a:hover {
+    color: #b30000;
+  }
+
+  /* Social sign-in section */
+  .social-signin {
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .social-signin p {
+    color: #555;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .social-buttons a {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+
+  .social-buttons a:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 12px rgba(225, 6, 0, 0.5);
+  }
+
+  .google-btn {
+    background: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+  }
+
+  .facebook-btn {
+    background: #1877f2;
+    color: #fff;
+  }
+
+  .wwe-btn {
+    background: #e10600;
+    color: #fff;
+  }
+</style>
+
+<style id="professional-responsive-navigation">
+/* Shared navigation: identical dimensions and alignment on every page */
+.site-navbar, .site-navbar * { box-sizing: border-box; }
+.site-navbar {
+  --nav-bg: #080808;
+  --nav-accent: #e10600;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  min-height: 82px;
+  padding: 10px clamp(18px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: rgba(8, 8, 8, .97);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 5px 22px rgba(0,0,0,.24);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.site-brand {
+  width: 150px;
+  min-width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #fff;
+}
+.site-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 145px;
+  object-fit: contain;
+  object-position: left center;
+}
+.smack-brand { font-size: 21px; font-weight: 900; letter-spacing: 1px; white-space: nowrap; }
+.smack-brand span { color: #258eea; }
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.8vw, 28px);
+  min-width: 0;
+}
+.site-nav-links > a,
+.site-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 2px;
+  border: 0;
+  background: transparent;
+  color: #f5f5f5;
+  font: 700 13px/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.site-nav-links > a:hover,
+.site-dropdown-toggle:hover,
+.site-nav-links > a:focus-visible,
+.site-dropdown-toggle:focus-visible { color: #ff3434; outline-offset: 4px; }
+.site-nav-links .site-nav-cta,
+.site-nav-links .site-nav-signin {
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 5px;
+}
+.site-nav-links .site-nav-cta { background: #e10600; color: #fff; }
+.site-nav-links .site-nav-cta:hover { background: #b90000; color: #fff; }
+.site-nav-links .site-nav-signin { border: 1px solid rgba(255,255,255,.72); color: #fff; }
+.site-nav-links .site-nav-signin:hover { border-color: #e10600; color: #ff3434; }
+.site-dropdown { position: relative; display: flex; align-items: center; }
+.site-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -12px;
+  min-width: 165px;
+  padding: 7px;
+  border: 1px solid #303030;
+  border-radius: 7px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+}
+.site-dropdown:hover .site-dropdown-menu,
+.site-dropdown:focus-within .site-dropdown-menu,
+.site-dropdown.is-open .site-dropdown-menu { display: block; }
+.site-dropdown-menu a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 4px;
+  color: #f5f5f5;
+  font: 600 13px Arial, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-dropdown-menu a:hover { background: #252525; color: #ff3434; }
+.site-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #151515;
+  cursor: pointer;
+}
+.site-menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  background: #fff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* Keep the sign-in page's form centered beneath the shared navigation. */
+body:has(.signin-container) { display: block !important; min-height: 100vh; }
+.signin-container { margin: clamp(24px, 5vh, 48px) auto !important; }
+/* Prevent media from escaping the viewport without changing its desktop appearance. */
+img, video, iframe { max-width: 100%; }
+html { overflow-x: clip; }
+@media (max-width: 1050px) {
+  .site-navbar { gap: 16px; padding-inline: 24px; }
+  .site-brand { width: 112px; min-width: 112px; }
+  .site-nav-links { gap: 14px; }
+  .site-nav-links > a, .site-dropdown-toggle { font-size: 12px; }
+}
+@media (max-width: 820px) {
+  .site-navbar { min-height: 72px; padding: 8px 20px; }
+  .site-brand { height: 52px; width: 125px; min-width: 125px; }
+  .site-menu-toggle { display: block; margin-left: auto; flex: 0 0 auto; }
+  .site-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    background: #090909;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 12px 22px rgba(0,0,0,.35);
+  }
+  .site-navbar.menu-open .site-nav-links { display: flex; }
+  .site-nav-links > a, .site-dropdown-toggle {
+    width: 100%;
+    min-height: 43px;
+    justify-content: flex-start;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+  .site-nav-links .site-nav-cta, .site-nav-links .site-nav-signin {
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .site-dropdown { display: block; width: 100%; }
+  .site-dropdown-toggle { justify-content: space-between; }
+  .site-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0 0 5px;
+    box-shadow: none;
+    background: #151515;
+  }
+  .site-dropdown.is-open .site-dropdown-menu { display: block; }
+}
+@media (max-width: 480px) {
+  .site-navbar { padding-inline: 14px; }
+  .site-brand { width: 112px; min-width: 112px; }
+}
+</style>
+
+</head>
+<body>
+
+<nav class="site-navbar" aria-label="Main navigation">
+  <a class="site-brand" href="sample.html" aria-label="WWE home">
+    <img src="LOGO1.png" alt="WWE logo">
+  </a>
+  <button class="site-menu-toggle" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="site-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="site-nav-links" id="site-nav-links">
+    <a href="sample.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="games.html">Games</a>
+    <div class="site-dropdown">
+      <button class="site-dropdown-toggle" type="button" aria-expanded="false">Network <span aria-hidden="true">▾</span></button>
+      <div class="site-dropdown-menu">
+        <a href="raw.html">RAW</a>
+        <a href="smack.html">SmackDown</a>
+        <a href="superstars.html">Superstars</a>
+      </div>
+    </div>
+    <a class="site-nav-cta" href="subscribe.html">Subscribe</a>
+    <a class="site-nav-signin" href="signin.html">Sign In</a>
+  </div>
+</nav>
+
+
+<div class="signin-container">
+  <img src="sign3.jpg" alt="WWE Sign In" class="signin-banner">
+  <h1>Sign In</h1>
+  <p>Step into the WWE Universe with your account!</p>
+
+  <form class="signin-form">
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Sign In</button>
+    <button type="button" onclick="window.location.href='sample.html'" 
+  style="margin-top:12px; padding:14px 18px; font-size:1rem; 
+  border:2px solid #e10600; border-radius:8px; 
+  background:#fff; color:#e10600; font-weight:bold; 
+  cursor:pointer; transition:all 0.3s;">
+  Return to Home Page
+</button>
+
+  </form>
+
+  <div class="options">
+    <a href="#">Forgot Password?</a>
+    <a href="#">Create Account</a>
+  </div>
+
+  <!-- Social Sign-in -->
+  <div class="social-signin">
+    <p>Or continue with</p>
+    <div class="social-buttons">
+      <a href="#" class="google-btn"><i class="fab fa-google"></i></a>
+      <a href="#" class="facebook-btn"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="wwe-btn"><i class="fas fa-bolt"></i></a>
+    </div>
+  </div>
+</div>
+
+
+<script id="professional-responsive-navigation-js">
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('.site-navbar');
+  if (!nav) return;
+  const menuButton = nav.querySelector('.site-menu-toggle');
+  const dropdown = nav.querySelector('.site-dropdown');
+  const dropdownButton = nav.querySelector('.site-dropdown-toggle');
+
+  menuButton.addEventListener('click', function () {
+    const open = nav.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+
+  dropdownButton.addEventListener('click', function () {
+    const open = dropdown.classList.toggle('is-open');
+    dropdownButton.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.contains(event.target)) {
+      nav.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('is-open');
+      dropdownButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

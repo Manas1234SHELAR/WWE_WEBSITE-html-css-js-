@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WWE Wrestlers</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Boldonse&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: black;
+      color: #fff;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: black;
+      padding-right: 50%;
+    }
+
+    .logo {
+      margin-left: 30px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      /* margin-left: 20px; */
+      /* align-items: center; */
+    }
+
+    .nav-links a {
+      color:white;
+      text-decoration: none;
+      font-family: sans-serif;
+    }
+
+     a:first-child {
+      color: red;
+    }
+
+    .anc:hover, .anc:active {
+      color: red;
+    }
+
+
+    /* Card grid */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .card {
+      perspective: 1000px;
+      position: relative;
+      height: 360px;
+      border-radius: 12px;
+      background: rgba(20, 63, 63, 0.75);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .card input:checked ~ .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      border-radius: 12px;
+    }
+
+    .card-front img {
+  width: 90%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top; /* <-- focus on top of image */
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+
+    .card-front h3 {
+      margin: 8px 0 4px;
+      font-size: 18px;
+      color: #ffcc00;
+    }
+
+    .card-front p {
+      margin: 0;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .card-front audio {
+      width: 85%;
+      margin: 8px auto;
+      display: block;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(160deg, #111, #1a1a1a);
+      border: 2px solid #ffcc00;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-back h4 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #ffcc00, #ff5733);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-back p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #f2f2f2;
+      font-style: italic;
+      padding: 12px;
+      border-left: 3px solid #ffcc00;
+      border-radius: 6px;
+      background: rgba(255, 204, 0, 0.1);
+      box-shadow: inset 0 0 10px rgba(255, 204, 0, 0.2);
+    }
+
+    .details-btn {
+      margin-top: auto;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 8px;
+      background: #ffcc00;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: inline-block;
+    }
+
+    .details-btn:hover {
+      background: #e6b800;
+    }
+
+    .card input {
+      display: none;
+    }
+
+  </style>
+
+<style id="professional-responsive-navigation">
+/* Shared navigation: identical dimensions and alignment on every page */
+.site-navbar, .site-navbar * { box-sizing: border-box; }
+.site-navbar {
+  --nav-bg: #080808;
+  --nav-accent: #e10600;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  min-height: 82px;
+  padding: 10px clamp(18px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: rgba(8, 8, 8, .97);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 5px 22px rgba(0,0,0,.24);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.site-brand {
+  width: 150px;
+  min-width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #fff;
+}
+.site-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 145px;
+  object-fit: contain;
+  object-position: left center;
+}
+.smack-brand { font-size: 21px; font-weight: 900; letter-spacing: 1px; white-space: nowrap; }
+.smack-brand span { color: #258eea; }
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.8vw, 28px);
+  min-width: 0;
+}
+.site-nav-links > a,
+.site-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 2px;
+  border: 0;
+  background: transparent;
+  color: #f5f5f5;
+  font: 700 13px/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.site-nav-links > a:hover,
+.site-dropdown-toggle:hover,
+.site-nav-links > a:focus-visible,
+.site-dropdown-toggle:focus-visible { color: #ff3434; outline-offset: 4px; }
+.site-nav-links .site-nav-cta,
+.site-nav-links .site-nav-signin {
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 5px;
+}
+.site-nav-links .site-nav-cta { background: #e10600; color: #fff; }
+.site-nav-links .site-nav-cta:hover { background: #b90000; color: #fff; }
+.site-nav-links .site-nav-signin { border: 1px solid rgba(255,255,255,.72); color: #fff; }
+.site-nav-links .site-nav-signin:hover { border-color: #e10600; color: #ff3434; }
+.site-dropdown { position: relative; display: flex; align-items: center; }
+.site-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -12px;
+  min-width: 165px;
+  padding: 7px;
+  border: 1px solid #303030;
+  border-radius: 7px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+}
+.site-dropdown:hover .site-dropdown-menu,
+.site-dropdown:focus-within .site-dropdown-menu,
+.site-dropdown.is-open .site-dropdown-menu { display: block; }
+.site-dropdown-menu a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 4px;
+  color: #f5f5f5;
+  font: 600 13px Arial, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-dropdown-menu a:hover { background: #252525; color: #ff3434; }
+.site-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #151515;
+  cursor: pointer;
+}
+.site-menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  background: #fff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* Keep the sign-in page's form centered beneath the shared navigation. */
+body:has(.signin-container) { display: block !important; min-height: 100vh; }
+.signin-container { margin: clamp(24px, 5vh, 48px) auto !important; }
+/* Prevent media from escaping the viewport without changing its desktop appearance. */
+img, video, iframe { max-width: 100%; }
+html { overflow-x: clip; }
+@media (max-width: 1050px) {
+  .site-navbar { gap: 16px; padding-inline: 24px; }
+  .site-brand { width: 112px; min-width: 112px; }
+  .site-nav-links { gap: 14px; }
+  .site-nav-links > a, .site-dropdown-toggle { font-size: 12px; }
+}
+@media (max-width: 820px) {
+  .site-navbar { min-height: 72px; padding: 8px 20px; }
+  .site-brand { height: 52px; width: 125px; min-width: 125px; }
+  .site-menu-toggle { display: block; margin-left: auto; flex: 0 0 auto; }
+  .site-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    background: #090909;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 12px 22px rgba(0,0,0,.35);
+  }
+  .site-navbar.menu-open .site-nav-links { display: flex; }
+  .site-nav-links > a, .site-dropdown-toggle {
+    width: 100%;
+    min-height: 43px;
+    justify-content: flex-start;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+  .site-nav-links .site-nav-cta, .site-nav-links .site-nav-signin {
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .site-dropdown { display: block; width: 100%; }
+  .site-dropdown-toggle { justify-content: space-between; }
+  .site-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0 0 5px;
+    box-shadow: none;
+    background: #151515;
+  }
+  .site-dropdown.is-open .site-dropdown-menu { display: block; }
+}
+@media (max-width: 480px) {
+  .site-navbar { padding-inline: 14px; }
+  .site-brand { width: 112px; min-width: 112px; }
+}
+</style>
+
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  
+<nav class="site-navbar" aria-label="Main navigation">
+  <a class="site-brand" href="sample.html" aria-label="WWE home">
+    <img src="LOGO1.png" alt="WWE logo">
+  </a>
+  <button class="site-menu-toggle" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="site-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="site-nav-links" id="site-nav-links">
+    <a href="sample.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="games.html">Games</a>
+    <div class="site-dropdown">
+      <button class="site-dropdown-toggle" type="button" aria-expanded="false">Network <span aria-hidden="true">▾</span></button>
+      <div class="site-dropdown-menu">
+        <a href="raw.html">RAW</a>
+        <a href="smack.html">SmackDown</a>
+        <a href="superstars.html">Superstars</a>
+      </div>
+    </div>
+    <a class="site-nav-cta" href="subscribe.html">Subscribe</a>
+    <a class="site-nav-signin" href="signin.html">Sign In</a>
+  </div>
+</nav>
+
+
+  <h1 style="text-align:center; margin:30px 0; color: #ffcc00;">WWE Superstars</h1>
+
+  <!-- ✅ Wrestlers cards with flip -->
+  <div class="container">
+    <div class="card">
+      <input type="checkbox" id="cena">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="john.png" alt="John Cena">
+          <h3>John Cena</h3>
+          <p>The Time Is Now</p>
+          <audio controls>
+            <source src="john.mp3" type="audio/mpeg">
+          </audio>
+          <label for="cena" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>John Cena</h4>
+          <p>16-time World Champion<br><br>Movie star <br><br>One of WWE’s most popular superstars of all time.</p>
+          <label for="cena" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="orton">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="randy.png" alt="Randy Orton">
+          <h3>Randy Orton</h3>
+          <p>Voices</p>
+          <audio controls>
+            <source src="orton.mp3" type="audio/mpeg">
+          </audio>
+          <label for="orton" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Randy Orton</h4>
+          <p>Known as "The Viper"<br>14-time WWE Champion<br>Youngest WWE Champion in history<br>Renowned for his “Apex Predator” persona.</p>
+          <label for="orton" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="roman">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="roman.png" alt="Roman Reigns">
+          <h3>Roman Reigns</h3>
+          <p>Head of the Table</p>
+          <audio controls>
+            <source src="roman.mp3" type="audio/mpeg">
+          </audio>
+          <label for="roman" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Roman Reigns</h4>
+          <p>The Tribal Chief<br>Longest reigning Universal Champion<br>Multiple-time WWE Champion<br>Leader of The Bloodline.</p>
+          <label for="roman" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="taker">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="undertaker.png" alt="The Undertaker">
+          <h3>The Undertaker</h3>
+          <p>Rest in Peace</p>
+          <audio controls>
+            <source src="Undertaker.mp3" type="audio/mpeg">
+          </audio>
+          <label for="taker" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>The Undertaker</h4>
+          <p>7-time WWE Champion<br>A WWE Hall of Fame<br>Undefeated For 21 WrestleManias<br>Known As The Phenom.</p>
+          <label for="taker" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <input type="checkbox" id="hogan">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="hogan1.jpg" alt="Hulk Hogan">
+          <h3>Hulk Hogan</h3>
+          <p>Hulkamania</p>
+          <audio controls>
+            <source src="hulkhogan.mp3" type="audio/mpeg">
+          </audio>
+          <label for="hogan" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Hulk Hogan</h4>
+          <p>Iconic 12-time World Champion, WWE Hall of Famer, and a legend of the 80s wrestling era.</p>
+          <label for="hogan" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="rock">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="rock.jpg" alt="The Rock">
+          <h3>The Rock</h3>
+          <p>Electrifying</p>
+          <audio controls>
+            <source src="rock.mp3" type="audio/mpeg">
+          </audio>
+          <label for="rock" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>The Rock</h4>
+          <p>10-time World Champion, Hollywood superstar, and one of WWE’s most charismatic legends.</p>
+          <label for="rock" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="stonecold">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="stonecold.jpg" alt="Stone Cold Steve Austin">
+          <h3>Stone Cold</h3>
+          <p>Stunner</p>
+          <audio controls>
+            <source src="Steve-Austin-Stone-Cold-WWE-Theme.mp3" type="audio/mpeg">
+          </audio>
+          <label for="stonecold" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Stone Cold</h4>
+          <p>6-time WWE Champion, Austin 3:16 legend, and anti-hero of the Attitude Era.</p>
+          <label for="stonecold" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+  <input type="checkbox" id="boogeyman">
+  <div class="card-inner">
+    <div class="card-front">
+      <img src="boogeyman.jpg" alt="The Boogeyman">
+      <h3>The Boogeyman</h3>
+      <p>Fear Incarnate</p>
+      <audio controls>
+        <source src="boogeyman.mp3" type="audio/mpeg">
+      </audio>
+      <label for="boogeyman" class="details-btn">Details</label>
+    </div>
+    <div class="card-back">
+      <h4>The Boogeyman</h4>
+      <p>Known for his terrifying appearance and unpredictable antics in WWE, The Boogeyman is one of the most unique characters in wrestling history.</p>
+      <label for="boogeyman" class="details-btn">Back</label>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div class="card">
+      <input type="checkbox" id="shawn">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="shawnmichaels.jpg" alt="Shawn Michaels">
+          <h3>Shawn Michaels</h3>
+          <p>Heartbreak Kid</p>
+          <audio controls>
+            <source src="shaun.mp3" type="audio/mpeg">
+          </audio>
+          <label for="shawn" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Shawn Michaels</h4>
+          <p>4-time World Champion, known for his incredible in-ring athleticism and showmanship.</p>
+          <label for="shawn" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="tripleh">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="tripleh.jpg" alt="Triple H">
+          <h3>Triple H</h3>
+          <p>The Game</p>
+          <audio controls>
+            <source src="tripleh.mp3" type="audio/mpeg">
+          </audio>
+          <label for="tripleh" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Triple H</h4>
+          <p>14-time World Champion, cerebral assassin, and WWE executive.</p>
+          <label for="tripleh" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="brock">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="brock.jpg" alt="Brock Lesnar">
+          <h3>Brock Lesnar</h3>
+          <p>The Beast</p>
+          <audio controls>
+            <source src="brock.mp3" type="audio/mpeg">
+          </audio>
+          <label for="brock" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Brock Lesnar</h4>
+          <p>Beast Incarnate, multiple-time WWE Champion, UFC crossover superstar.</p>
+          <label for="brock" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="seth">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="seth.jpg" alt="Seth Rollins">
+          <h3>Seth Rollins</h3>
+          <p>The Architect</p>
+          <audio controls>
+            <source src="seth.mp3" type="audio/mpeg">
+          </audio>
+          <label for="seth" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Seth Rollins</h4>
+          <p>Multiple-time WWE Champion, known for his athleticism and high-impact style.</p>
+          <label for="seth" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="edge">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="edge.jpg" alt="Edge">
+          <h3>Edge</h3>
+          <p>Rated R Superstar</p>
+          <audio controls>
+            <source src="edge.mp3" type="audio/mpeg">
+          </audio>
+          <label for="edge" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Edge</h4>
+          <p>11-time World Champion, master of the Spear, and Hall of Famer.</p>
+          <label for="edge" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="batista">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="batista.jpg" alt="Batista">
+          <h3>Batista</h3>
+          <p>The Animal</p>
+          <audio controls>
+            <source src="batista.mp3" type="audio/mpeg">
+          </audio>
+          <label for="batista" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Batista</h4>
+          <p>Multiple-time World Champion, member of Evolution, now a Hollywood actor.</p>
+          <label for="batista" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="cm">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="cmpunk.jpg" alt="CM Punk">
+          <h3>CM Punk</h3>
+          <p>The Best in the World</p>
+          <audio controls>
+            <source src="cmpunk.mp3" type="audio/mpeg">
+          </audio>
+          <label for="cm" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>CM Punk</h4>
+          <p>WWE Champion, known for his pipebomb promos and straight-edge persona.</p>
+          <label for="cm" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="kofi">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="kofi.jpg" alt="Kofi Kingston">
+          <h3>Kofi Kingston</h3>
+          <p>Kingston</p>
+          <audio controls>
+            <source src="kofi.mp3" type="audio/mpeg">
+          </audio>
+          <label for="kofi" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Kofi Kingston</h4>
+          <p>WWE Champion, known for his athletic style and popularity as part of The New Day.</p>
+          <label for="kofi" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <input type="checkbox" id="bigshow">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="bigshow.jpg" alt="Big Show">
+          <h3>Big Show</h3>
+          <p>The Giant</p>
+          <audio controls>
+            <source src="bigshow.mp3" type="audio/mpeg">
+          </audio>
+          <label for="bigshow" class="details-btn">Details</label>
+        </div>
+        <div class="card-back">
+          <h4>Big Show</h4>
+          <p>7-time World Champion, known for his massive size and agility in the ring.</p>
+          <label for="bigshow" class="details-btn">Back</label>
+        </div>
+      </div>
+    </div>
+
+   <div class="card">
+  <input type="checkbox" id="miz">
+  <div class="card-inner">
+    <div class="card-front">
+      <img src="miz.jpg" alt="The Miz">
+      <h3>The Miz</h3>
+      <p>A-Lister</p>
+      <audio controls>
+        <source src="miz.mp3" type="audio/mpeg">
+      </audio>
+      <label for="miz" class="details-btn">Details</label>
+    </div>
+    <div class="card-back">
+      <h4>The Miz</h4>
+      <p>Multiple-time Intercontinental Champion, actor, and one of WWE's top entertainers.</p>
+      <label for="miz" class="details-btn">Back</label>
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <input type="checkbox" id="rey">
+  <div class="card-inner">
+    <div class="card-front">
+      <img src="rey.jpg" alt="Rey Mysterio">
+      <h3>Rey Mysterio</h3>
+      <p>The Ultimate Underdog</p>
+      <audio controls>
+        <source src="reymisterio.mp3" type="audio/mpeg">
+      </audio>
+      <label for="rey" class="details-btn">Details</label>
+    </div>
+    <div class="card-back">
+      <h4>Rey Mysterio</h4>
+      <p>High-flying luchador, multiple-time WWE Champion, known for his speed and agility in the ring.</p>
+      <label for="rey" class="details-btn">Back</label>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <input type="checkbox" id="shinsuke">
+  <div class="card-inner">
+    <div class="card-front">
+      <img src="nakamura.jpg" alt="Shinsuke Nakamura">
+      <h3>Shinsuke Nakamura</h3>
+      <p>The King of Strong Style</p>
+      <audio controls>
+        <source src="nakamura.mp3" type="audio/mpeg">
+      </audio>
+      <label for="shinsuke" class="details-btn">Details</label>
+    </div>
+    <div class="card-back">
+      <h4>Shinsuke Nakamura</h4>
+      <p>Charismatic WWE superstar, known for his unique style, strong strikes, and incredible in-ring charisma.</p>
+      <label for="shinsuke" class="details-btn">Back</label>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <script src="bootstrap.bundle.min.js"></script>
+
+<script id="professional-responsive-navigation-js">
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('.site-navbar');
+  if (!nav) return;
+  const menuButton = nav.querySelector('.site-menu-toggle');
+  const dropdown = nav.querySelector('.site-dropdown');
+  const dropdownButton = nav.querySelector('.site-dropdown-toggle');
+
+  menuButton.addEventListener('click', function () {
+    const open = nav.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+
+  dropdownButton.addEventListener('click', function () {
+    const open = dropdown.classList.toggle('is-open');
+    dropdownButton.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.contains(event.target)) {
+      nav.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('is-open');
+      dropdownButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

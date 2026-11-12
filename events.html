@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="bootstrap.min.css">
+<title>WWE Events</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+  }
+
+  .nav-links {
+    margin-top: 0%;
+      display: flex;
+      gap: 40px;
+      margin-right: 55%;
+     
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-family: sans-serif;
+    }
+
+
+    .anc:hover {
+      color: red;
+    }
+
+    .anc:active {
+      color: red;
+    }
+
+
+    a:first-child {
+      color: red;
+    }
+    .logo{
+        width: 50px;
+        height: 50px;
+        margin-left: 30px;
+    }
+
+  header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #e91429, #111);
+  }
+
+  header h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  header p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .events {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .event {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333; /* underline border */
+  }
+
+  .event:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .event img {
+    width: 40%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .event-info {
+    width: 60%;
+  }
+
+  .event-info h2 {
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+    color: #e91429;
+    text-transform: uppercase;
+  }
+
+  .event-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 10px;
+  }
+
+  .event-month {
+    display: inline-block;
+    background: #e91429;
+    padding: 6px 15px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+
+</style>
+
+<style id="professional-responsive-navigation">
+/* Shared navigation: identical dimensions and alignment on every page */
+.site-navbar, .site-navbar * { box-sizing: border-box; }
+.site-navbar {
+  --nav-bg: #080808;
+  --nav-accent: #e10600;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  min-height: 82px;
+  padding: 10px clamp(18px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: rgba(8, 8, 8, .97);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 5px 22px rgba(0,0,0,.24);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.site-brand {
+  width: 150px;
+  min-width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #fff;
+}
+.site-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 145px;
+  object-fit: contain;
+  object-position: left center;
+}
+.smack-brand { font-size: 21px; font-weight: 900; letter-spacing: 1px; white-space: nowrap; }
+.smack-brand span { color: #258eea; }
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.8vw, 28px);
+  min-width: 0;
+}
+.site-nav-links > a,
+.site-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 2px;
+  border: 0;
+  background: transparent;
+  color: #f5f5f5;
+  font: 700 13px/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.site-nav-links > a:hover,
+.site-dropdown-toggle:hover,
+.site-nav-links > a:focus-visible,
+.site-dropdown-toggle:focus-visible { color: #ff3434; outline-offset: 4px; }
+.site-nav-links .site-nav-cta,
+.site-nav-links .site-nav-signin {
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 5px;
+}
+.site-nav-links .site-nav-cta { background: #e10600; color: #fff; }
+.site-nav-links .site-nav-cta:hover { background: #b90000; color: #fff; }
+.site-nav-links .site-nav-signin { border: 1px solid rgba(255,255,255,.72); color: #fff; }
+.site-nav-links .site-nav-signin:hover { border-color: #e10600; color: #ff3434; }
+.site-dropdown { position: relative; display: flex; align-items: center; }
+.site-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -12px;
+  min-width: 165px;
+  padding: 7px;
+  border: 1px solid #303030;
+  border-radius: 7px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+}
+.site-dropdown:hover .site-dropdown-menu,
+.site-dropdown:focus-within .site-dropdown-menu,
+.site-dropdown.is-open .site-dropdown-menu { display: block; }
+.site-dropdown-menu a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 4px;
+  color: #f5f5f5;
+  font: 600 13px Arial, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-dropdown-menu a:hover { background: #252525; color: #ff3434; }
+.site-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #151515;
+  cursor: pointer;
+}
+.site-menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  background: #fff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* Keep the sign-in page's form centered beneath the shared navigation. */
+body:has(.signin-container) { display: block !important; min-height: 100vh; }
+.signin-container { margin: clamp(24px, 5vh, 48px) auto !important; }
+/* Prevent media from escaping the viewport without changing its desktop appearance. */
+img, video, iframe { max-width: 100%; }
+html { overflow-x: clip; }
+@media (max-width: 1050px) {
+  .site-navbar { gap: 16px; padding-inline: 24px; }
+  .site-brand { width: 112px; min-width: 112px; }
+  .site-nav-links { gap: 14px; }
+  .site-nav-links > a, .site-dropdown-toggle { font-size: 12px; }
+}
+@media (max-width: 820px) {
+  .site-navbar { min-height: 72px; padding: 8px 20px; }
+  .site-brand { height: 52px; width: 125px; min-width: 125px; }
+  .site-menu-toggle { display: block; margin-left: auto; flex: 0 0 auto; }
+  .site-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    background: #090909;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 12px 22px rgba(0,0,0,.35);
+  }
+  .site-navbar.menu-open .site-nav-links { display: flex; }
+  .site-nav-links > a, .site-dropdown-toggle {
+    width: 100%;
+    min-height: 43px;
+    justify-content: flex-start;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+  .site-nav-links .site-nav-cta, .site-nav-links .site-nav-signin {
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .site-dropdown { display: block; width: 100%; }
+  .site-dropdown-toggle { justify-content: space-between; }
+  .site-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0 0 5px;
+    box-shadow: none;
+    background: #151515;
+  }
+  .site-dropdown.is-open .site-dropdown-menu { display: block; }
+}
+@media (max-width: 480px) {
+  .site-navbar { padding-inline: 14px; }
+  .site-brand { width: 112px; min-width: 112px; }
+}
+</style>
+
+</head>
+<body>
+
+    
+<nav class="site-navbar" aria-label="Main navigation">
+  <a class="site-brand" href="sample.html" aria-label="WWE home">
+    <img src="ablogo.jpg" alt="WWE logo">
+  </a>
+  <button class="site-menu-toggle" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="site-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="site-nav-links" id="site-nav-links">
+    <a href="sample.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="games.html">Games</a>
+    <div class="site-dropdown">
+      <button class="site-dropdown-toggle" type="button" aria-expanded="false">Network <span aria-hidden="true">▾</span></button>
+      <div class="site-dropdown-menu">
+        <a href="raw.html">RAW</a>
+        <a href="smack.html">SmackDown</a>
+        <a href="superstars.html">Superstars</a>
+      </div>
+    </div>
+    <a class="site-nav-cta" href="subscribe.html">Subscribe</a>
+    <a class="site-nav-signin" href="signin.html">Sign In</a>
+  </div>
+</nav>
+
+
+<header>
+  <h1>WWE Events Timeline</h1>
+  <p>All WWE events with images, details, and highlighted months</p>
+</header>
+
+<section class="events">
+
+  <div class="event">
+    <img src="event2.jpg">
+    <div class="event-info">
+      <h2>Royal Rumble</h2>
+      <p>The iconic 30-man battle royal where the winner earns a championship match at WrestleMania.</p>
+      <span class="event-month">January</span>
+    </div>
+  </div>
+
+  <div class="event">
+    <img src="event1.jpg" alt="WrestleMania">
+    <div class="event-info">
+      <h2>WrestleMania</h2>
+      <p>The grandest stage in WWE. Titles defended, legends made, and unforgettable moments every year.</p>
+      <span class="event-month">April</span>
+    </div>
+  </div>
+
+  <div class="event">
+    <img src="event3.jpg" alt="Money in the Bank">
+    <div class="event-info">
+      <h2>Money in the Bank</h2>
+      <p>Superstars compete in ladder matches for a contract granting a guaranteed title opportunity.</p>
+      <span class="event-month">May / June</span>
+    </div>
+  </div>
+
+  <div class="event">
+    <img src="event4.jpg" alt="SummerSlam">
+    <div class="event-info">
+      <h2>SummerSlam</h2>
+      <p>The hottest summer event with epic rivalries and blockbuster championship matches.</p>
+      <span class="event-month">August</span>
+    </div>
+  </div>
+
+  <div class="event">
+    <img src="event5.jpg" alt="Survivor Series">
+    <div class="event-info">
+      <h2>Survivor Series</h2>
+      <p>Elimination matches and brand supremacy battles define WWE’s November spectacle.</p>
+      <span class="event-month">November</span>
+    </div>
+  </div>
+
+</section>
+
+<footer style="text-align:center; padding:20px;  margin-top:50px; color: red">
+  © 2025 WWE Website | Designed by Manas
+</footer>
+<script src="bootstrap.bundle.min.js"></script>
+
+
+<script id="professional-responsive-navigation-js">
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('.site-navbar');
+  if (!nav) return;
+  const menuButton = nav.querySelector('.site-menu-toggle');
+  const dropdown = nav.querySelector('.site-dropdown');
+  const dropdownButton = nav.querySelector('.site-dropdown-toggle');
+
+  menuButton.addEventListener('click', function () {
+    const open = nav.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+
+  dropdownButton.addEventListener('click', function () {
+    const open = dropdown.classList.toggle('is-open');
+    dropdownButton.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.contains(event.target)) {
+      nav.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('is-open');
+      dropdownButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

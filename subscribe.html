@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="bootstrap.min.css">
+<title>Subscribe to WWE Updates</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: black; /* black background */
+    color: #fff;
+  }
+
+  .nav-links {
+    margin-top: 0%;
+      display: flex;
+      gap: 40px;
+      margin-right: 55%;
+     
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-family: sans-serif;
+    }
+
+
+    .anc:hover {
+      color: red;
+    }
+
+    .anc:active {
+      color: red;
+    }
+
+
+    a:first-child {
+      color: red;
+    }
+    .logo{
+        width: 50px;
+        height: 50px;
+        margin-left: 30px;
+    }
+
+
+  header {
+    text-align: center;
+    padding: 60px 20px;
+    background: #1a1a1a; /* dark header */
+  }
+
+  header h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: #e91429;
+    letter-spacing: 2px;
+  }
+
+  header p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+
+  .subscribe-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .subscribe-section h2 {
+    font-size: 2.2rem;
+    color: #e91429;
+    margin-bottom: 10px;
+  }
+
+  .subscribe-section p {
+    font-size: 1rem;
+    color: #ddd;
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .subscribe-form {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(233, 20, 41, 0.4);
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #222;
+  }
+
+  .subscribe-form button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    background: #e91429;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .subscribe-form button:hover {
+    background: #ff2a42;
+    transform: scale(1.05);
+  }
+
+  .subscribe-image {
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+
+  }
+
+  .benefits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    text-align: center;
+    background: #222;
+    padding: 20px;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(233, 20, 41, 0.5);
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    color: #e91429;
+    margin-bottom: 15px;
+  }
+
+  .benefit h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  .benefit p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #ccc;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    margin-top: 50px;
+    color: #aaa;
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    .subscribe-form {
+      flex-direction: column;
+    }
+    .subscribe-form input[type="email"], .subscribe-form button {
+      width: 100%;
+      border-radius: 30px;
+    }
+    .benefits {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style id="professional-responsive-navigation">
+/* Shared navigation: identical dimensions and alignment on every page */
+.site-navbar, .site-navbar * { box-sizing: border-box; }
+.site-navbar {
+  --nav-bg: #080808;
+  --nav-accent: #e10600;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  min-height: 82px;
+  padding: 10px clamp(18px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: rgba(8, 8, 8, .97);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 5px 22px rgba(0,0,0,.24);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.site-brand {
+  width: 150px;
+  min-width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #fff;
+}
+.site-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 145px;
+  object-fit: contain;
+  object-position: left center;
+}
+.smack-brand { font-size: 21px; font-weight: 900; letter-spacing: 1px; white-space: nowrap; }
+.smack-brand span { color: #258eea; }
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.8vw, 28px);
+  min-width: 0;
+}
+.site-nav-links > a,
+.site-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 2px;
+  border: 0;
+  background: transparent;
+  color: #f5f5f5;
+  font: 700 13px/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.site-nav-links > a:hover,
+.site-dropdown-toggle:hover,
+.site-nav-links > a:focus-visible,
+.site-dropdown-toggle:focus-visible { color: #ff3434; outline-offset: 4px; }
+.site-nav-links .site-nav-cta,
+.site-nav-links .site-nav-signin {
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 5px;
+}
+.site-nav-links .site-nav-cta { background: #e10600; color: #fff; }
+.site-nav-links .site-nav-cta:hover { background: #b90000; color: #fff; }
+.site-nav-links .site-nav-signin { border: 1px solid rgba(255,255,255,.72); color: #fff; }
+.site-nav-links .site-nav-signin:hover { border-color: #e10600; color: #ff3434; }
+.site-dropdown { position: relative; display: flex; align-items: center; }
+.site-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -12px;
+  min-width: 165px;
+  padding: 7px;
+  border: 1px solid #303030;
+  border-radius: 7px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+}
+.site-dropdown:hover .site-dropdown-menu,
+.site-dropdown:focus-within .site-dropdown-menu,
+.site-dropdown.is-open .site-dropdown-menu { display: block; }
+.site-dropdown-menu a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 4px;
+  color: #f5f5f5;
+  font: 600 13px Arial, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-dropdown-menu a:hover { background: #252525; color: #ff3434; }
+.site-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #151515;
+  cursor: pointer;
+}
+.site-menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  background: #fff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* Keep the sign-in page's form centered beneath the shared navigation. */
+body:has(.signin-container) { display: block !important; min-height: 100vh; }
+.signin-container { margin: clamp(24px, 5vh, 48px) auto !important; }
+/* Prevent media from escaping the viewport without changing its desktop appearance. */
+img, video, iframe { max-width: 100%; }
+html { overflow-x: clip; }
+@media (max-width: 1050px) {
+  .site-navbar { gap: 16px; padding-inline: 24px; }
+  .site-brand { width: 112px; min-width: 112px; }
+  .site-nav-links { gap: 14px; }
+  .site-nav-links > a, .site-dropdown-toggle { font-size: 12px; }
+}
+@media (max-width: 820px) {
+  .site-navbar { min-height: 72px; padding: 8px 20px; }
+  .site-brand { height: 52px; width: 125px; min-width: 125px; }
+  .site-menu-toggle { display: block; margin-left: auto; flex: 0 0 auto; }
+  .site-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    background: #090909;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 12px 22px rgba(0,0,0,.35);
+  }
+  .site-navbar.menu-open .site-nav-links { display: flex; }
+  .site-nav-links > a, .site-dropdown-toggle {
+    width: 100%;
+    min-height: 43px;
+    justify-content: flex-start;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+  .site-nav-links .site-nav-cta, .site-nav-links .site-nav-signin {
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .site-dropdown { display: block; width: 100%; }
+  .site-dropdown-toggle { justify-content: space-between; }
+  .site-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0 0 5px;
+    box-shadow: none;
+    background: #151515;
+  }
+  .site-dropdown.is-open .site-dropdown-menu { display: block; }
+}
+@media (max-width: 480px) {
+  .site-navbar { padding-inline: 14px; }
+  .site-brand { width: 112px; min-width: 112px; }
+}
+</style>
+
+</head>
+<body>
+     
+<nav class="site-navbar" aria-label="Main navigation">
+  <a class="site-brand" href="sample.html" aria-label="WWE home">
+    <img src="ablogo.jpg" alt="WWE logo">
+  </a>
+  <button class="site-menu-toggle" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="site-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="site-nav-links" id="site-nav-links">
+    <a href="sample.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="games.html">Games</a>
+    <div class="site-dropdown">
+      <button class="site-dropdown-toggle" type="button" aria-expanded="false">Network <span aria-hidden="true">▾</span></button>
+      <div class="site-dropdown-menu">
+        <a href="raw.html">RAW</a>
+        <a href="smack.html">SmackDown</a>
+        <a href="superstars.html">Superstars</a>
+      </div>
+    </div>
+    <a class="site-nav-cta" href="subscribe.html">Subscribe</a>
+    <a class="site-nav-signin" href="signin.html">Sign In</a>
+  </div>
+</nav>
+
+
+
+<!-- <header>
+  <h1>WWE Fan Club</h1>
+  <p>Subscribe for exclusive updates, events, and news from WWE!</p>
+</header> -->
+
+<section class="subscribe-section">
+  <img src="sub4.jpg" alt="Subscribe to WWE" class="subscribe-image">
+  <h2>Join the WWE Insider</h2>
+  <p>Stay ahead of the game! Enter your email to get the latest WWE news, exclusive behind-the-scenes content, and event updates straight to your inbox.</p>
+
+  <form class="subscribe-form">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <div class="benefits">
+    <div class="benefit">
+      <i class="fa-solid fa-bolt benefit-icon"></i>
+      <h3>Exclusive News</h3>
+      <p>Get WWE news and announcements before anyone else.</p>
+    </div>
+
+    <div class="benefit">
+      <i class="fa-solid fa-star benefit-icon"></i>
+      <h3>Event Updates</h3>
+      <p>Stay informed about all WWE events and schedules.</p>
+    </div>
+
+    <div class="benefit">
+      <i class="fa-solid fa-video benefit-icon"></i>
+      <h3>Behind the Scenes</h3>
+      <p>Access exclusive videos, interviews, and backstage content.</p>
+    </div>
+
+    <div class="benefit">
+      <i class="fa-solid fa-gift benefit-icon"></i>
+      <h3>Special Offers</h3>
+      <p>Receive special WWE offers, merch discounts, and giveaways.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="color: red;">
+  © 2025 WWE Website | Designed by Manas
+</footer>
+
+<script src="bootstrap.bundle.min.js"></script>
+
+
+<script id="professional-responsive-navigation-js">
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('.site-navbar');
+  if (!nav) return;
+  const menuButton = nav.querySelector('.site-menu-toggle');
+  const dropdown = nav.querySelector('.site-dropdown');
+  const dropdownButton = nav.querySelector('.site-dropdown-toggle');
+
+  menuButton.addEventListener('click', function () {
+    const open = nav.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+
+  dropdownButton.addEventListener('click', function () {
+    const open = dropdown.classList.toggle('is-open');
+    dropdownButton.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.contains(event.target)) {
+      nav.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('is-open');
+      dropdownButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

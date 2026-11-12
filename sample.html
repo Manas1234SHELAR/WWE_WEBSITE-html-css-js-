@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Boldonse&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background:
+        linear-gradient(to right, rgba(0, 0, 0, 0.861) 10%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 80%, rgba(0, 0, 0, 0) 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.869) 10%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.1) 80%, rgba(0, 0, 0, 0) 100%),
+        url('crowd1.png') no-repeat center center;
+      background-size: cover;
+      filter: brightness(1.5);
+      /* makes image brighter */
+
+      background-size: cover;
+
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      margin-right: 5%;
+      /* Moves links toward the left */
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-family: sans-serif;
+    }
+
+
+    .anc:hover {
+      color: red;
+    }
+
+    .anc:active {
+      color: red;
+    }
+
+
+    a:first-child {
+      color: red;
+    }
+
+    .logo {
+      margin-left: 30px;
+    }
+
+    .br {
+      margin-top: 100px;
+      width: 450px;
+      height: 100px;
+      margin-left: 30px;
+    }
+
+    
+
+    .sub {
+      height: 45px;
+      width: 150px;
+      position: relative;
+      margin-left: 300px;
+      background-color: red;
+      color: white;
+      /* width:130px;
+      height: 45px; */
+      /* margin-right: 250px; */
+      border-radius: 5PX;
+      text-align: center;
+      border-style: none;
+
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 3px;
+    }
+
+
+    .sub:hover {
+      /* border-style: solid;
+  border-width: 5px;
+  border-color:white; */
+      outline: white solid 5px;
+    }
+
+
+
+    .sign {
+      width: 130px;
+      height: 45px;
+      margin-right: 10%;
+      background-color: white;
+      color: black;
+      border-radius: 5PX;
+      text-align: center;
+      border-style: none;
+      transition-property: color;
+      transition-duration: 1s;
+      letter-spacing: 3px;
+
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+
+    .sign:hover {
+      /* border-style: solid;
+      border-color: red;
+      border-width: 5px;
+      ;
+      color: red; */
+       outline: red solid 5px;
+       color:red;
+       
+    }
+
+
+
+
+
+    .learn {
+      background-color: red;
+      color: white;
+      WIDTH: 200px;
+      height: 60px;
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      text-align: center;
+      border-style: none;
+      border-radius: 5px;
+    }
+
+    .learn:hover {
+      border-style: solid;
+      border-color: white;
+      border-width: 5px;
+    }
+
+
+    .card-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-left: 50px;
+    }
+
+
+    .card {
+      width: 250px;
+      height: 250px;
+    }
+
+
+    .card:hover {
+      transform: scale(1.20);
+    }
+
+    .cd {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+<style id="professional-responsive-navigation">
+/* Shared navigation: identical dimensions and alignment on every page */
+.site-navbar, .site-navbar * { box-sizing: border-box; }
+.site-navbar {
+  --nav-bg: #080808;
+  --nav-accent: #e10600;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  min-height: 82px;
+  padding: 10px clamp(18px, 4vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: rgba(8, 8, 8, .97);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 5px 22px rgba(0,0,0,.24);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.site-brand {
+  width: 150px;
+  min-width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #fff;
+}
+.site-brand img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 145px;
+  object-fit: contain;
+  object-position: left center;
+}
+.smack-brand { font-size: 21px; font-weight: 900; letter-spacing: 1px; white-space: nowrap; }
+.smack-brand span { color: #258eea; }
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.8vw, 28px);
+  min-width: 0;
+}
+.site-nav-links > a,
+.site-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 2px;
+  border: 0;
+  background: transparent;
+  color: #f5f5f5;
+  font: 700 13px/1.2 Arial, Helvetica, sans-serif;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .18s ease;
+}
+.site-nav-links > a:hover,
+.site-dropdown-toggle:hover,
+.site-nav-links > a:focus-visible,
+.site-dropdown-toggle:focus-visible { color: #ff3434; outline-offset: 4px; }
+.site-nav-links .site-nav-cta,
+.site-nav-links .site-nav-signin {
+  min-height: 40px;
+  padding: 0 17px;
+  border-radius: 5px;
+}
+.site-nav-links .site-nav-cta { background: #e10600; color: #fff; }
+.site-nav-links .site-nav-cta:hover { background: #b90000; color: #fff; }
+.site-nav-links .site-nav-signin { border: 1px solid rgba(255,255,255,.72); color: #fff; }
+.site-nav-links .site-nav-signin:hover { border-color: #e10600; color: #ff3434; }
+.site-dropdown { position: relative; display: flex; align-items: center; }
+.site-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -12px;
+  min-width: 165px;
+  padding: 7px;
+  border: 1px solid #303030;
+  border-radius: 7px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0,0,0,.4);
+}
+.site-dropdown:hover .site-dropdown-menu,
+.site-dropdown:focus-within .site-dropdown-menu,
+.site-dropdown.is-open .site-dropdown-menu { display: block; }
+.site-dropdown-menu a {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 4px;
+  color: #f5f5f5;
+  font: 600 13px Arial, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-dropdown-menu a:hover { background: #252525; color: #ff3434; }
+.site-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #151515;
+  cursor: pointer;
+}
+.site-menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px 0;
+  background: #fff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* Keep the sign-in page's form centered beneath the shared navigation. */
+body:has(.signin-container) { display: block !important; min-height: 100vh; }
+.signin-container { margin: clamp(24px, 5vh, 48px) auto !important; }
+/* Prevent media from escaping the viewport without changing its desktop appearance. */
+img, video, iframe { max-width: 100%; }
+html { overflow-x: clip; }
+@media (max-width: 1050px) {
+  .site-navbar { gap: 16px; padding-inline: 24px; }
+  .site-brand { width: 112px; min-width: 112px; }
+  .site-nav-links { gap: 14px; }
+  .site-nav-links > a, .site-dropdown-toggle { font-size: 12px; }
+}
+@media (max-width: 820px) {
+  .site-navbar { min-height: 72px; padding: 8px 20px; }
+  .site-brand { height: 52px; width: 125px; min-width: 125px; }
+  .site-menu-toggle { display: block; margin-left: auto; flex: 0 0 auto; }
+  .site-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    background: #090909;
+    border-bottom: 1px solid #333;
+    box-shadow: 0 12px 22px rgba(0,0,0,.35);
+  }
+  .site-navbar.menu-open .site-nav-links { display: flex; }
+  .site-nav-links > a, .site-dropdown-toggle {
+    width: 100%;
+    min-height: 43px;
+    justify-content: flex-start;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+  .site-nav-links .site-nav-cta, .site-nav-links .site-nav-signin {
+    justify-content: center;
+    margin-top: 5px;
+  }
+  .site-dropdown { display: block; width: 100%; }
+  .site-dropdown-toggle { justify-content: space-between; }
+  .site-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0 0 5px;
+    box-shadow: none;
+    background: #151515;
+  }
+  .site-dropdown.is-open .site-dropdown-menu { display: block; }
+}
+@media (max-width: 480px) {
+  .site-navbar { padding-inline: 14px; }
+  .site-brand { width: 112px; min-width: 112px; }
+}
+</style>
+
+</head>
+
+<body>
+  
+<nav class="site-navbar" aria-label="Main navigation">
+  <a class="site-brand" href="sample.html" aria-label="WWE home">
+    <img src="LOGO1.png" alt="WWE logo">
+  </a>
+  <button class="site-menu-toggle" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="site-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="site-nav-links" id="site-nav-links">
+    <a href="sample.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="games.html">Games</a>
+    <div class="site-dropdown">
+      <button class="site-dropdown-toggle" type="button" aria-expanded="false">Network <span aria-hidden="true">▾</span></button>
+      <div class="site-dropdown-menu">
+        <a href="raw.html">RAW</a>
+        <a href="smack.html">SmackDown</a>
+        <a href="superstars.html">Superstars</a>
+      </div>
+    </div>
+    <a class="site-nav-cta" href="subscribe.html">Subscribe</a>
+    <a class="site-nav-signin" href="signin.html">Sign In</a>
+  </div>
+</nav>
+
+
+  <div style="margin-left: 30px;">
+    <img class="br" src="brand.jpg">
+    <p
+      style="margin-left: 50px; color: white; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+      WWE is now on Netflix! With Netflix, you'll be able to stream every WWE <br>Premium Live Event and new episodes of
+      Raw, SmackDown and NXT.</p><br>
+    <a href="https://www.netflix.com/in/title/81788927"><input class="learn" style="margin-left: 50px; margin-top: 20px;" type="button" value="LEARN MORE"><br></a>
+
+
+  </div>
+  
+  <script src="bootstrap.bundle.min.js"></script>
+
+<script id="professional-responsive-navigation-js">
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('.site-navbar');
+  if (!nav) return;
+  const menuButton = nav.querySelector('.site-menu-toggle');
+  const dropdown = nav.querySelector('.site-dropdown');
+  const dropdownButton = nav.querySelector('.site-dropdown-toggle');
+
+  menuButton.addEventListener('click', function () {
+    const open = nav.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  });
+
+  dropdownButton.addEventListener('click', function () {
+    const open = dropdown.classList.toggle('is-open');
+    dropdownButton.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.contains(event.target)) {
+      nav.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('is-open');
+      dropdownButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+</script>
+
+</body>
+
+</html>
